@@ -119,14 +119,14 @@ if ($action eq 'dl'){
   if ($arg1 eq ''){ die "need remote path\n"; }
   if ($arg2 eq ''){ $arg2 = '.'; }
   if ($arg2 eq '-'){ $arg2 = $arg1; }
-  print `rsync -aze 'ssh $keyop' $remote:$arg1 $arg2`;
+  print `scp $keyop' $remote:$arg1 $arg2`;
   $didit = 1;
 }
 if ($action eq 'ul'){
 #      rsync -ae ssh $keyop [local_path] $remote:[remote_path]
-  if ($arg1 eq ''){ die "need local path\n"; }
+  if ($arg1 eq ''){ $arg2 = '~'; }
   if ($arg2 eq '-'){ $arg2 = $arg1; }
-  print `rsync -aze 'ssh $keyop' $arg1 $remote:$arg2`;
+  print `scp $keyop $arg1 $remote:$arg2`;
   $didit = 1;
 }
 if ($action eq 'dlx'){
